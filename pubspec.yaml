@@ -1,8 +1,8 @@
 name: 'vhstube'
 version: 0.0.1
-description: A web app built using polymer.dart.
-#author: Your Name <email@example.com>
-#homepage: https://www.example.com
+description: A web app to list and watch videos, supporting chapters.
+author: Georg Göri <jgrnt@makeclean.org>
+homepage: https://makeclean.org
 
 environment:
   sdk: '>=1.0.0 <2.0.0'
@@ -11,6 +11,7 @@ dependencies:
   browser: '>=0.10.0 <0.11.0'
   paper_elements: '>=0.7.0 <0.8.0'
   polymer: '>=0.16.0 <0.17.0'
+  dart_config: any
 
 transformers:
 - polymer:

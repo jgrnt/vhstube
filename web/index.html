@@ -13,27 +13,13 @@
     <title>vhstube</title>
 
 
-    <!-- imports -->
-    <link rel="import" href="packages/paper_elements/paper_icon_button.html">
-    <link rel="import" href="packages/core_elements/core_toolbar.html">
-    <link rel="import" href="packages/core_elements/core_header_panel.html">
-    <!-- custom -->
-    <link rel="import" href="packages/vhstube/components/user_cred.html">
-    <link rel="import" href="packages/vhstube/components/video_search.html">
+    <link rel="import" href="packages/vhstube/components/vhs_tube.html">
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body fullbleed vertical layout unresolved>
-<core-header-panel flex>
-    <core-toolbar id="mainheader">
-        <span flex>VHStube</span>
-        <video-search></video-search>
-    </core-toolbar>
-    <p>Sample content.</p>
-
-    <p>Sample content.</p>
-</core-header-panel>
-<user-cred></user-cred>
+<vhs-tube f></vhs-tube>
 <script type="application/dart">export 'package:polymer/init.dart';</script>
 </body>
 </html>
