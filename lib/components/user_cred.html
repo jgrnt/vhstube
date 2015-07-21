@@ -1,0 +1,22 @@
+<!--
+  Copyright (c) 2015, Georg Göri. All rights reserved. Use of this source code
+  is governed by a BSD-style license that can be found in the LICENSE file.
+-->
+<link rel="import" href="../../../packages/polymer/polymer.html">
+
+<link rel="import" href="../../../packages/paper_elements/paper_action_dialog.html">
+<link rel="import" href="../../../packages/paper_elements/paper_input.html">
+
+<polymer-element name="user-cred">
+    <template>
+        <paper-action-dialog heading="Login" opened="true">
+            <section layout vertical>
+                <paper-input label="Username" floatinglabel=""></paper-input>
+
+                <paper-input label="Password" type="password" floatinglabel=""></paper-input>
+            </section>
+            <paper-button affirmative="" autofocus="">Login</paper-button>
+        </paper-action-dialog>
+    </template>
+    <script type="application/dart" src="user_cred.dart"></script>
+</polymer-element>

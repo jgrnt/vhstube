@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<!--
+  Copyright (c) 2015, Georg Göri. All rights reserved. Use of this source code
+  is governed by a BSD-style license that can be found in the LICENSE file.
+-->
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vhstube</title>
+
+
+    <!-- imports -->
+    <link rel="import" href="packages/paper_elements/paper_icon_button.html">
+    <link rel="import" href="packages/core_elements/core_toolbar.html">
+    <link rel="import" href="packages/core_elements/core_header_panel.html">
+    <!-- custom -->
+    <link rel="import" href="packages/vhstube/components/user_cred.html">
+    <link rel="import" href="packages/vhstube/components/video_search.html">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body fullbleed vertical layout unresolved>
+<core-header-panel flex>
+    <core-toolbar id="mainheader">
+        <span flex>VHStube</span>
+        <video-search></video-search>
+    </core-toolbar>
+    <p>Sample content.</p>
+
+    <p>Sample content.</p>
+</core-header-panel>
+<user-cred></user-cred>
+<script type="application/dart">export 'package:polymer/init.dart';</script>
+</body>
+</html>
