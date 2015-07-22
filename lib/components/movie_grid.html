@@ -1,0 +1,19 @@
+<!-- import polymer-element's definition -->
+<link rel="import" href="../../../packages/polymer/polymer.html">
+
+<polymer-element name="movie-grid" attributes="items">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <ol>
+    <template repeat="{{item in items}}">
+<li >{{item.title}}</li>
+</template>
+    </ol>
+    <!-- Template content here -->
+  </template>
+  <script type="application/dart" src="movie_grid.dart"></script>
+</polymer-element>
