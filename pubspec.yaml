@@ -12,6 +12,7 @@ dependencies:
   paper_elements: '>=0.7.0 <0.8.0'
   polymer: '>=0.16.0 <0.17.0'
   dart_config: any
+  elastic_dart: '>=0.2.0 <0.3.0'
 
 transformers:
 - polymer:

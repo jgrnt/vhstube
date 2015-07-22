@@ -1,6 +1,8 @@
 import 'package:polymer/polymer.dart';
 import 'package:dart_config/default_browser.dart';
 import 'fatal_dialog.dart';
+import 'movie_model.dart';
+import 'dart:developer';
 /**
  * A Polymer vhs-tube element.
  */
@@ -8,9 +10,13 @@ import 'fatal_dialog.dart';
 
 class VhsTube extends PolymerElement {
 
+  @published MovieModel model = new MovieModel();
+
+  @observable String searchterm;
   /// Constructor used to create instance of VhsTube.
   VhsTube.created() : super.created() {
   }
+
 
   /*
    * Optional lifecycle methods - uncomment if needed.

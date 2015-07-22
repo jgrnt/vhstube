@@ -8,19 +8,20 @@
 <link rel="import" href="user_cred.html">
 <link rel="import" href="video_search.html">
 <link rel="import" href="fatal_dialog.html">
+<link rel="import" href="search_controller.html">
+<link rel="import" href="movie_grid.html">
 <polymer-element name="vhs-tube" flex layout vertical>
   <template>
 
     <core-header-panel flex>
       <core-toolbar id="mainheader">
         <span flex>VHStube</span>
-        <video-search></video-search>
+        <video-search searchterm={{searchterm}}></video-search>
       </core-toolbar>
-      <p>Sample content.</p>
-
-      <p>Sample content.</p>
+      <movie-grid items={{model.items}}></movie-grid>
     </core-header-panel>
     <user-cred></user-cred>
+    <search-controller model={{model}} searchterm={{searchterm}}></search-controller>
     <!-- Template content here -->
   </template>
   <script type="application/dart" src="vhs_tube.dart"></script>

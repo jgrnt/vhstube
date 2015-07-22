@@ -6,7 +6,7 @@
 
 <link rel="import" href="../../../packages/paper_elements/paper_input.html">
 
-<polymer-element name="video-search" noscript>
+<polymer-element name="video-search" attributes="searchterm" noscript>
     <template>
         <style>
             .searchbar {
@@ -15,8 +15,10 @@
             }
         </style>
         <span class="searchbar">
-            <paper-input label="Search"></paper-input>
+            <paper-input label="Search" value={{searchterm}}></paper-input>
             <paper-icon-button id="searchbutton" icon="search"></paper-icon-button>
         </span>
     </template>
+
+
 </polymer-element>
