@@ -1,18 +1,115 @@
 <!-- import polymer-element's definition -->
 <link rel="import" href="../../../packages/polymer/polymer.html">
 
+<link rel="import" href="../../../packages/core_elements/core_animated_pages.html" >
 <polymer-element name="movie-grid" attributes="items">
   <template>
     <style>
-      :host {
-        display: block;
+
+      .chip-container {
+        margin-top: 1vh;
+
+      }
+
+      .chip {
+        display: inline-block;
+        position: relative;
+        border-radius: 3px;
+        margin: 4px;
+        overflow: hidden;
+        text-align: start;
+        background-color: #fff;
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+      }
+
+      .chip-top {
+        width: 200px;
+        height: 150px;
+      }
+
+      .chip-bottom {
+        padding: 8px;
+        line-height: 1.5;
+      }
+
+      .chip-album-title {
+        width: 20em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      #details {
+        padding: 200px 10% 0;
+      }
+
+      .card {
+        height: 300px;
+        border-radius: 3px;
+        text-align: start;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+
+      .card-left {
+        width: 400px;
+      }
+
+      .card-right {
+        padding: 24px;
+      }
+
+      .card-icon {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        margin-right: 16px;
+      }
+
+      .card-album-title {
+        font-size: 2em;
       }
     </style>
-    <ol>
-    <template repeat="{{item in items}}">
-<li >{{item.title}}</li>
-</template>
-    </ol>
+    <core-animated-pages selected="{{page}}" transitions="hero-transition cross-fade-all">
+      <section>
+        <div class="chip-container" hero-p on-tap="{{transition}}">
+          <template repeat="{{items as item}}">
+            <div class="chip" hero-id="{{item.title}}" hero?="{{selectedAlbum === item }}">
+              <div class="chip-top"  hero-id="{{item.title}-art"
+                   hero?="{{selectedAlbum === item}}">
+
+                <img _src="[[videoServerUrl]]/thumb.php?src={{item.fileName}}&size=200">
+
+              </div>
+              <div class="chip-bottom">
+                <div class="chip-album-title">{{item.title}}</div>
+              </div>
+            </div>
+            </template>
+        </div>
+      </section>
+      <section id="details">
+        <div class="card" layout horizontal hero-id="{{selectedAlbum.title}}" hero on-tap="{{transition}}">
+          <div class="card-left"  hero-id="{{selectedAlbum.title}}" hero>
+
+            <img _src="{{videoServerUrl}}/thumb.php?src={{selectedAlbum.fileName}}&size=400">
+          </div>
+          <div class="card-right" flex>
+            <div layout horizontal center>
+              <div>
+                <div class="card-icon" style="background:red"></div>
+              </div>
+              <div flex>
+                <div class="card-album-title">{{selectedAlbum.title}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </core-animated-pages>
+
+
     <!-- Template content here -->
   </template>
   <script type="application/dart" src="movie_grid.dart"></script>

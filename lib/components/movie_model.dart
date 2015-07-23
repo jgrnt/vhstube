@@ -4,8 +4,9 @@ import 'dart:html';
 class Movie extends Observable{
 
   @observable String title;
+  @observable String fileName;
 
-  Movie.fromJson(Map json):title=json['Title'];
+  Movie.fromJson(Map json):title=json['Title'],fileName=json['FileName'];
 
 }
 
