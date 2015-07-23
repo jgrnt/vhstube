@@ -1,7 +1,8 @@
 import 'package:polymer/polymer.dart';
 import 'movie_model.dart';
 import 'package:elastic_dart/browser_client.dart';
-import 'package:dart_config/default_browser.dart';
+import '../config.dart';
+
 /**
  * A Polymer search-controller element.
  */
@@ -15,9 +16,9 @@ class SearchController extends PolymerElement {
 
   /// Constructor used to create instance of SearchController.
   SearchController.created() : super.created() {
-    loadConfig().then(
-            (Map config) {
-          es = new Elasticsearch(config["elasticUrl"]);
+   Config.get("elasticUrl").then(
+            (url) {
+          es = new Elasticsearch(url);
           performSearch();
         });
   }

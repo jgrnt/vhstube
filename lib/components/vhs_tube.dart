@@ -1,7 +1,7 @@
 import 'package:polymer/polymer.dart';
-import 'package:dart_config/default_browser.dart';
 import 'fatal_dialog.dart';
 import 'movie_model.dart';
+import '../config.dart';
 import 'dart:developer';
 /**
  * A Polymer vhs-tube element.
@@ -15,6 +15,7 @@ class VhsTube extends PolymerElement {
   @observable String searchterm;
   /// Constructor used to create instance of VhsTube.
   VhsTube.created() : super.created() {
+    Config.load((error) => this.children.add(new FatalDialog(error)));
   }
 
 
@@ -40,13 +41,6 @@ class VhsTube extends PolymerElement {
   /// Called when vhs-tube has been fully prepared (Shadow DOM created,
   /// property observers set up, event listeners attached).
   ready() {
-
-    loadConfig().then(
-    (Map config) {
-     print(config["elasticUrl"]);
-     // continue with your app here!
-    },
-    onError: (error) => this.children.add(new FatalDialog("No config on server")));
   }
    
 
