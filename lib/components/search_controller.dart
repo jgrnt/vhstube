@@ -11,6 +11,7 @@ class SearchController extends PolymerElement {
 
   MovieModel model;
   Elasticsearch es;
+  var from;
 
   @observable String searchterm;
 
@@ -45,10 +46,22 @@ class SearchController extends PolymerElement {
 
   performSearch() {
     if (es != null) {
-      es.search(index: 'movies').then((result) {
+      es.search(index: 'movies',query: { "size":5}).then((result) {
         var movies = result['hits']['hits'].map((elem) => elem['_source']).toList();
         model.changeData(movies);
+
       });
+      from=5;
+    }
+  }
+
+  more() async {
+    if (es != null) {
+      var fRes=es.search(index: 'movies',query: { "size":1,"from":from});
+      from++;
+      var result =await fRes;
+      var movies = result['hits']['hits'].map((elem) => elem['_source']).toList();
+      model.addData(movies);
     }
   }
 

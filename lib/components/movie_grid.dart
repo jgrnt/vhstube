@@ -1,7 +1,9 @@
 import 'package:polymer/polymer.dart';
+import 'dart:html';
 import 'movie_model.dart';
 import '../config.dart';
 import 'package:template_binding/template_binding.dart';
+import 'package:core_elements/core_list_dart.dart';
 /**
  * A Polymer movie-grid element.
  */
@@ -9,14 +11,15 @@ import 'package:template_binding/template_binding.dart';
 
 class MovieGrid extends PolymerElement {
 
-  ObservableList items;
+  @observable ObservableList items;
   @observable int page = 0;
   @observable var selectedAlbum;
-
+  @observable ObservableList groups=new ObservableList();
   @observable String videoServerUrl;
   /// Constructor used to create instance of MovieGrid.
   MovieGrid.created() : super.created() {
     Config.get("videoServerUrl").then((url)=>videoServerUrl=url);
+
   }
 
   transition(e) {
@@ -28,6 +31,17 @@ class MovieGrid extends PolymerElement {
       this.page = 0;
     }
   }
+  ready(){
+    items.listChanges.listen((changes)=>updateGroups());
+  }
+  updateGroups(){
+    groups..clear()..addAll(items.map((elem)=>new CoreListGroup(data:{'title':elem.title,'fileName':elem.fileName,'imageUrl':"$videoServerUrl/thumb.php?src=${elem.fileName}&size=200"})));
+  }
+
+  loadMore(){
+    document.querySelector('vhs-tube').shadowRoot.querySelector('#searchcontroller').more().then( (newResults) => $['threshold'].clearLower(true));
+  }
+
   /*
    * Optional lifecycle methods - uncomment if needed.
    *

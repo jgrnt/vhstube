@@ -13,15 +13,17 @@
 <polymer-element name="vhs-tube" flex layout vertical>
   <template>
 
-    <core-header-panel flex>
+    <core-header-panel flex layout vertical>
       <core-toolbar id="mainheader">
         <span flex>VHStube</span>
         <video-search searchterm={{searchterm}}></video-search>
       </core-toolbar>
-      <movie-grid items={{model.items}}></movie-grid>
+
+
+      <movie-grid items={{model.items}} fit></movie-grid>
     </core-header-panel>
     <user-cred></user-cred>
-    <search-controller model={{model}} searchterm={{searchterm}}></search-controller>
+    <search-controller id="searchcontroller" model={{model}} searchterm={{searchterm}}></search-controller>
     <!-- Template content here -->
   </template>
   <script type="application/dart" src="vhs_tube.dart"></script>

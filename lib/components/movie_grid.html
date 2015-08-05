@@ -2,7 +2,12 @@
 <link rel="import" href="../../../packages/polymer/polymer.html">
 
 <link rel="import" href="../../../packages/core_elements/core_animated_pages.html" >
-<polymer-element name="movie-grid" attributes="items">
+
+<link rel="import" href="../../../packages/core_elements/core_image.html" >
+<link rel="import" href="../../../packages/core_elements/core_list_dart.html">
+<link rel="import" href="../../../packages/core_elements/core_scroll_threshold.html">
+
+<polymer-element name="movie-grid" attributes="items" layout vertical>
   <template>
     <style>
 
@@ -10,7 +15,15 @@
         margin-top: 1vh;
 
       }
-
+      .title {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 12px 8px 8px 8px;
+        color: white;
+        background: rgba(0,0,0,0.6);
+      }
       .chip {
         display: inline-block;
         position: relative;
@@ -23,17 +36,21 @@
       }
 
       .chip-top {
-        width: 200px;
-        height: 150px;
+        width: 85vw;
+        max-width: 200px;
+        height: 67.5vw;
+        max-height: 150px;
+
       }
 
       .chip-bottom {
         padding: 8px;
         line-height: 1.5;
+        width: 85vw;
+        max-width: 300px;
       }
 
       .chip-album-title {
-        width: 20em;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -70,30 +87,41 @@
       .card-album-title {
         font-size: 2em;
       }
+          .divider {
+      font-size: 20px;
+      color: gray;
+      padding: 24px 8px 8px 8px;
+    }
     </style>
-    <core-animated-pages selected="{{page}}" transitions="hero-transition cross-fade-all">
+
+    <core-animated-pages selected="{{page}}" transitions="hero-transition cross-fade-all" flex>
       <section>
-        <div class="chip-container" hero-p on-tap="{{transition}}">
-          <template repeat="{{items as item}}">
-            <div class="chip" hero-id="{{item.title}}" hero?="{{selectedAlbum === item }}">
-              <div class="chip-top"  hero-id="{{item.title}-art"
-                   hero?="{{selectedAlbum === item}}">
 
-                <img _src="[[videoServerUrl]]/thumb.php?src={{item.fileName}}&size=200">
+  <core-scroll-threshold id="threshold" scrollTarget="{{$['scroller']}}"
+    lowerThreshold="1500" on-lower-trigger="{{loadMore}}">
+  </core-scroll-threshold>
+        <div id="scroller" style="overflow:auto;" fit>
+          <core-list-dart id="list" data="{{items}}"  groups="{{groups}}" grid width="202"   scrollTarget="{{$['scroller']}}">
+            <template>
+              <div class="divider" divider>{{groupModel.data['title']}}</div>
+              <div class="item" >
 
+                <core-image class="chip-top" style="background-color: lightgray;" src="{{groupModel.data['imageUrl']}}&amp;seek={{model.thumbnailTime}}" sizing="contain" preload fade>
+                  <div class="title">{{model.name}}</div>
+                </core-image>
               </div>
-              <div class="chip-bottom">
-                <div class="chip-album-title">{{item.title}}</div>
-              </div>
-            </div>
             </template>
+          </core-list-dart>
+<div class="pad" hidden?="{{!$['threshold'].lowerTriggered}}" layout horizontal center-justified>
+      <!--<paper-spinner active></paper-spinner>-->
+      <div class="pad-left">Loading...</div>
+    </div>
         </div>
       </section>
       <section id="details">
         <div class="card" layout horizontal hero-id="{{selectedAlbum.title}}" hero on-tap="{{transition}}">
           <div class="card-left"  hero-id="{{selectedAlbum.title}}" hero>
-
-            <img _src="{{videoServerUrl}}/thumb.php?src={{selectedAlbum.fileName}}&size=400">
+            <core-image style="background-color: lightgray;" src="{{videoServerUrl}}/thumb.php?src={{selectedAlbum.fileName}}&amp;size=400" sizing="contain"  fade load?="{{selectedAlbum!=null}}"></core-image>
           </div>
           <div class="card-right" flex>
             <div layout horizontal center>
