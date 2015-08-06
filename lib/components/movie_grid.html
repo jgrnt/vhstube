@@ -7,7 +7,8 @@
 <link rel="import" href="../../../packages/core_elements/core_list_dart.html">
 <link rel="import" href="../../../packages/core_elements/core_scroll_threshold.html">
 
-<polymer-element name="movie-grid" attributes="items" layout vertical>
+
+<polymer-element name="movie-grid" attributes="items" layout vertical on-tap="{{transition}}">
   <template>
     <style>
 
@@ -104,11 +105,12 @@
           <core-list-dart id="list" data="{{items}}"  groups="{{groups}}" grid width="202"   scrollTarget="{{$['scroller']}}">
             <template>
               <div class="divider" divider>{{groupModel.data['title']}}</div>
-              <div class="item" >
-
-                <core-image class="chip-top" style="background-color: lightgray;" src="{{groupModel.data['imageUrl']}}&amp;seek={{model.thumbnailTime}}" sizing="contain" preload fade>
+              <div class="item" hero-id="{{groupModel.data['fileName']}}/{{index}}" hero>
+<a _href="#/video/{{groupModel.data['fileName']}}/{{index}}">
+                <core-image load="{{model!=null}}" class="chip-top" style="background-color: lightgray;" src="{{groupModel.data['imageUrl']}}&amp;seek={{model.thumbnailTime}}" sizing="contain" preload fade>
                   <div class="title">{{model.name}}</div>
                 </core-image>
+</a>
               </div>
             </template>
           </core-list-dart>
@@ -119,17 +121,16 @@
         </div>
       </section>
       <section id="details">
-        <div class="card" layout horizontal hero-id="{{selectedAlbum.title}}" hero on-tap="{{transition}}">
-          <div class="card-left"  hero-id="{{selectedAlbum.title}}" hero>
-            <core-image style="background-color: lightgray;" src="{{videoServerUrl}}/thumb.php?src={{selectedAlbum.fileName}}&amp;size=400" sizing="contain"  fade load?="{{selectedAlbum!=null}}"></core-image>
-          </div>
+        <div class="card" layout horizontal hero-id="{{selectedVideo.fileName}}/{{selectedChapter}}" hero>
+          <div class="card-left"  hero-id="{{selectedVideo.title}}" hero>
+           </div>
           <div class="card-right" flex>
             <div layout horizontal center>
               <div>
                 <div class="card-icon" style="background:red"></div>
               </div>
               <div flex>
-                <div class="card-album-title">{{selectedAlbum.title}}</div>
+                <div class="card-album-title">{{selectedVideo.title}}</div>
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
+import 'dart:core';
 
 
 class Timecode extends Duration {
@@ -47,7 +48,7 @@ class Movie extends _IntermediateClass {
 
   Movie.fromJson(Map json):super(),
   title=json['Title'],
-  fileName=json['FileName'] {
+  fileName=Uri.encodeComponent(json['FileName']) {
     addAll(new ObservableList.from(json['Chapters'].map((elem) => new Chapter.fromJson(elem))));
   }
 

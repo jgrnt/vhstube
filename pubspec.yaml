@@ -13,6 +13,7 @@ dependencies:
   polymer: '>=0.16.0 <0.17.0'
   dart_config: any
   elastic_dart: '>=0.2.0 <0.3.0'
+  route_hierarchical: any
 
 transformers:
 - polymer:
