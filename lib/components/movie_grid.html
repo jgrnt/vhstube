@@ -58,7 +58,7 @@
       }
 
       #details {
-        padding: 5%;
+padding: 5vw;
       }
 
       .card {
@@ -69,24 +69,7 @@
         box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
 
-      .card-left {
-        width: 400px;
-      }
 
-      .card-right {
-        padding: 24px;
-      }
-
-      .card-icon {
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        margin-right: 16px;
-      }
-
-      .card-album-title {
-        font-size: 2em;
-      }
           .divider {
       font-size: 20px;
       color: gray;
@@ -120,7 +103,7 @@
         </div>
       </section>
       <section id="details">
-        <div class="card" layout horizontal hero-id="{{selectedVideo.fileName}}/{{selectedChapter}}" hero>
+        <div class="card"  layout horizontal hero-id="{{selectedVideo.fileName}}/{{selectedChapter}}" hero>
           <movie-player video="{{selectedVideo}}" chapter="{{selectedChapter}}" >
           </movie-player>
         </div>

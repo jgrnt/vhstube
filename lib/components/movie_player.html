@@ -6,17 +6,22 @@
 <link rel="import" href="../../../packages/paper_elements/paper_icon_button.html">
 
 
-<polymer-element name="movie-player" attributes="video chapter" >
+<polymer-element name="movie-player" attributes="video chapter"  layout vertical flex>
     <template>
         <style>
             :host {
                 display: block;
                 width: 100%;
+                height:calc((90vw - 100px ) * 0.75 + 64px);
+                max-height: calc(90vh - 65px);
             }
             #videoplayer video{
                 width: 100%;
-                max-height: 70vh;
-
+                height:75%;
+                max-height: calc( 90vh - 128px );;
+            }
+            .chapters{
+                width: 100px;
             }
         </style>
         <core-toolbar >
@@ -27,9 +32,9 @@
 
         </core-toolbar>
 
-        <div layout horizontal>
+        <div  flex layout horizontal>
             <div   flex id="videoplayer"> </div>
-            <div> Drawer panel...</div>
+            <div class="chapters"> Drawer panel...</div>
 
         </div>
         <!-- Template content here -->
