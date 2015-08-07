@@ -1,0 +1,38 @@
+<!-- import polymer-element's definition -->
+<link rel="import" href="../../../packages/polymer/polymer.html">
+
+<link rel="import" href="../../../packages/core_elements/core_toolbar.html">
+
+<link rel="import" href="../../../packages/paper_elements/paper_icon_button.html">
+
+
+<polymer-element name="movie-player" attributes="video chapter" >
+    <template>
+        <style>
+            :host {
+                display: block;
+                width: 100%;
+            }
+            #videoplayer video{
+                width: 100%;
+                max-height: 70vh;
+
+            }
+        </style>
+        <core-toolbar >
+            <span flex>{{video.title}}</span>
+
+            <paper-icon-button id="morebutton"
+                               icon="more-vert"></paper-icon-button>
+
+        </core-toolbar>
+
+        <div layout horizontal>
+            <div   flex id="videoplayer"> </div>
+            <div> Drawer panel...</div>
+
+        </div>
+        <!-- Template content here -->
+    </template>
+    <script type="application/dart" src="movie_player.dart"></script>
+</polymer-element>

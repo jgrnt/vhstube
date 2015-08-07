@@ -6,7 +6,7 @@
 <link rel="import" href="../../../packages/core_elements/core_image.html" >
 <link rel="import" href="../../../packages/core_elements/core_list_dart.html">
 <link rel="import" href="../../../packages/core_elements/core_scroll_threshold.html">
-
+<link rel="import" href="movie_player.html">
 
 <polymer-element name="movie-grid" attributes="items" layout vertical on-tap="{{transition}}">
   <template>
@@ -58,11 +58,10 @@
       }
 
       #details {
-        padding: 200px 10% 0;
+        padding: 5%;
       }
 
       .card {
-        height: 300px;
         border-radius: 3px;
         text-align: start;
         overflow: hidden;
@@ -122,18 +121,8 @@
       </section>
       <section id="details">
         <div class="card" layout horizontal hero-id="{{selectedVideo.fileName}}/{{selectedChapter}}" hero>
-          <div class="card-left"  hero-id="{{selectedVideo.title}}" hero>
-           </div>
-          <div class="card-right" flex>
-            <div layout horizontal center>
-              <div>
-                <div class="card-icon" style="background:red"></div>
-              </div>
-              <div flex>
-                <div class="card-album-title">{{selectedVideo.title}}</div>
-              </div>
-            </div>
-          </div>
+          <movie-player video="{{selectedVideo}}" chapter="{{selectedChapter}}" >
+          </movie-player>
         </div>
       </section>
     </core-animated-pages>
